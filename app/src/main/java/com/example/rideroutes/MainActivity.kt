@@ -11,7 +11,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            // Aquí puedes poner tu pantalla principal más adelante.
         }
     }
 }

@@ -1,10 +1,10 @@
 package com.example.rideroutes.ui.about
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -14,8 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.rideroutes.R
 
@@ -47,7 +48,10 @@ class AboutActivity : ComponentActivity() {
     fun AboutScreen() {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
+            color = Color.DarkGray,
+            contentColor = Color.White
+
+
         ) {
             Column(
                 modifier = Modifier
@@ -56,20 +60,35 @@ class AboutActivity : ComponentActivity() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = stringResource(R.string.about_title), style = MaterialTheme.typography.headlineLarge)
+                Image(
+                    painterResource(id = R.drawable.mi_icono),
+                    contentDescription = "Logo",
+                    modifier = Modifier.size(128.dp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                
+                Text(text = stringResource(R.string.about_title),color = Color.Yellow, style = MaterialTheme.typography.headlineLarge)
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text = stringResource(R.string.about_theme), style = MaterialTheme.typography.titleMedium)
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text = stringResource(R.string.about_description),
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(text = "Versión: 1.0", style = MaterialTheme.typography.bodySmall)
                 Spacer(modifier = Modifier.height(24.dp))
 
                 // Botón de envío de correo
-                Button(onClick = { sendEmail() }) {
+                Button(
+                    onClick = { sendEmail() },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Yellow,
+                        contentColor = Color.Black
+                    )
+                ) {
+
                     Icon(imageVector = Icons.Default.Email, contentDescription = "Correo")
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(text = "Contactar")
